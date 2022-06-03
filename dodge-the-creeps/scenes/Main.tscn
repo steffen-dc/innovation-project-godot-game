@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1, 1, 0, 0, 0, 0, 478, 1, 0, 0, 0, 0, 478, 719, 0, 0, 0, 0, -1, 719, 0, 0, 0, 0, -1, 1 )
+}
 
 [node name="Main" type="Node"]
 
@@ -17,3 +22,10 @@ one_shot = true
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 240, 450 )
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2( -1, 1 )
+rotation = -3.03543e-08
