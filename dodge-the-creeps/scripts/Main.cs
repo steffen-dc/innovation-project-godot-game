@@ -25,8 +25,10 @@ public class Main : Node
     {
         GetNode<Timer>("MobTimer").Stop();
         GetNode<Timer>("ScoreTimer").Stop();
+        GetNode<HUD>("HUD").ShowGameOver();
     }
 
+    // linked to StartGame signal in HUD scene
     public void NewGame()
     {
         Score = 0;
@@ -36,11 +38,16 @@ public class Main : Node
         player.Start(startPosition.Position);
 
         GetNode<Timer>("StartTimer").Start();
+
+        var hud = GetNode<HUD>("HUD");
+        hud.UpdateScore(Score);
+        hud.ShowMessage("Get Ready!");
     }
 
     public void OnScoreTimerTimeout()
     {
         Score++;
+        GetNode<HUD>("HUD").UpdateScore(Score);
     }
 
     public void OnStartTimerTimeout()
