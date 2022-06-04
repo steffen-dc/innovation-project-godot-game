@@ -25,6 +25,8 @@ public class Main : Node
         GetNode<Timer>("MobTimer").Stop();
         GetNode<Timer>("ScoreTimer").Stop();
         GetNode<HUD>("HUD").ShowGameOver();
+        GetNode<AudioStreamPlayer>("Music").Stop();
+        GetNode<AudioStreamPlayer>("DeathSound").Play();
     }
 
     // linked to StartGame signal in HUD scene
@@ -41,6 +43,7 @@ public class Main : Node
         player.Start(startPosition.Position);
 
         GetNode<Timer>("StartTimer").Start();
+        GetNode<AudioStreamPlayer>("Music").Play();
 
         var hud = GetNode<HUD>("HUD");
         hud.UpdateScore(Score);
