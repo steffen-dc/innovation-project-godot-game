@@ -12,7 +12,6 @@ public class Main : Node
     public override void _Ready()
     {
         GD.Randomize();
-        NewGame();
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +30,10 @@ public class Main : Node
     // linked to StartGame signal in HUD scene
     public void NewGame()
     {
+        // Note that for calling Godot-provided methods with strings,
+        // we have to use the original Godot snake_case name.
+        GetTree().CallGroup("mobs", "queue_free");
+
         Score = 0;
 
         var player = GetNode<Player>("Player");
@@ -42,10 +45,6 @@ public class Main : Node
         var hud = GetNode<HUD>("HUD");
         hud.UpdateScore(Score);
         hud.ShowMessage("Get Ready!");
-
-        // Note that for calling Godot-provided methods with strings,
-        // we have to use the original Godot snake_case name.
-        GetTree().CallGroup("mobs", "queue_free");
     }
 
     public void OnScoreTimerTimeout()

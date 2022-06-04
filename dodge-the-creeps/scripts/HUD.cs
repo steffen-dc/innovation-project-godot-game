@@ -47,4 +47,15 @@ public class HUD : CanvasLayer
     {
         GetNode<Label>("ScoreLabel").Text = score.ToString();
     }
+
+    public void OnStartButtonPressed()
+    {
+        GetNode<Button>("StartButton").Hide();
+        EmitSignal("StartGame");
+    }
+
+    public void OnMessageTimerTimeout()
+    {
+        GetNode<Label>("Message").Hide();
+    }
 }
