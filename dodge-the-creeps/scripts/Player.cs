@@ -9,8 +9,9 @@ public class Player : Area2D
 
     [Export]
     public int Speed = 400;
-
     public Vector2 ScreenSize;
+
+    private bool _spinning;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -23,6 +24,17 @@ public class Player : Area2D
     public override void _Process(float delta)
     {
         var velocity = Vector2.Zero; // The player's movement vector. (by default, the player should not be moving)
+
+        if (Input.IsActionPressed("spin_attack"))
+        {
+            Rotate(0.1f);
+            _spinning = true;
+        }
+        else
+        {
+            RotationDegrees = 0;
+            _spinning = false;
+        }
 
         if (Input.IsActionPressed("move_right"))
         {
@@ -87,6 +99,8 @@ public class Player : Area2D
     // Each time an enemy hits the player, the (Hit) signal is going to be emitted.We need to disable the player's collision so that we don't trigger the hit signal more than once.
     public void OnPlayerBodyEntered(PhysicsBody2D body)
     {
+        if(_spinning) return;
+        
         Hide(); // Player disappears after being hit.
         EmitSignal(nameof(Hit));
         // Must be deferred as we can't change physics properties on a physics callback.
