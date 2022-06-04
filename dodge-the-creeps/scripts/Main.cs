@@ -42,6 +42,10 @@ public class Main : Node
         var hud = GetNode<HUD>("HUD");
         hud.UpdateScore(Score);
         hud.ShowMessage("Get Ready!");
+
+        // Note that for calling Godot-provided methods with strings,
+        // we have to use the original Godot snake_case name.
+        GetTree().CallGroup("mobs", "queue_free");
     }
 
     public void OnScoreTimerTimeout()
