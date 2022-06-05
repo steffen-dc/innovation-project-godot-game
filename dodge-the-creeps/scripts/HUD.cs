@@ -9,7 +9,7 @@ public class HUD : CanvasLayer
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+        GetNode<ProgressBar>("EnergyBar").Hide();
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,6 +39,7 @@ public class HUD : CanvasLayer
         message.Show();
 
         await ToSignal(GetTree().CreateTimer(1), "timeout");
+        GetNode<ProgressBar>("EnergyBar").Hide();
         GetNode<Button>("StartButton").Show();
     }
 
@@ -51,6 +52,7 @@ public class HUD : CanvasLayer
     public void OnStartButtonPressed()
     {
         GetNode<Button>("StartButton").Hide();
+        GetNode<ProgressBar>("EnergyBar").Show();
         EmitSignal("StartGame");
     }
 

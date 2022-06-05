@@ -107,8 +107,8 @@ public class Player : Area2D
         if(_spinning) return;
 
         Hide(); // Player disappears after being hit.
-        _energy = 100;
         EmitSignal(nameof(Hit));
+
         // Must be deferred as we can't change physics properties on a physics callback.
         GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
     }
@@ -118,6 +118,9 @@ public class Player : Area2D
         Position = pos;
         Show();
         GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+        
+        _energy = 100;
+        EmitSignal(nameof(UpdateEnergyBar), _energy);
     }
 
     public void DoSpinAttack(){
