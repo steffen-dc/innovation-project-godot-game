@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/HUD.cs" type="Script" id=2]
@@ -12,6 +12,12 @@ action = "start_game"
 
 [sub_resource type="ShortCut" id=3]
 shortcut = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.968627, 1, 0.00392157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 1 )
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -60,6 +66,8 @@ margin_top = -32.0
 margin_right = -88.0
 margin_bottom = -7.0
 rect_min_size = Vector2( 0, 25 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
 value = 100.0
 percent_visible = false
 
