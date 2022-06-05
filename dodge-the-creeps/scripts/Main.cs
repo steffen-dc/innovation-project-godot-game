@@ -26,6 +26,7 @@ public class Main : Node
     {
         GetNode<Timer>("MobTimer").Stop();
         GetNode<Timer>("ScoreTimer").Stop();
+        GetNode<Timer>("SpeedPotionTimer").Stop();
         GetNode<HUD>("HUD").ShowGameOver();
         GetNode<AudioStreamPlayer>("Music").Stop();
         GetNode<AudioStreamPlayer>("DeathSound").Play();
@@ -62,6 +63,7 @@ public class Main : Node
     {
         GetNode<Timer>("MobTimer").Start();
         GetNode<Timer>("ScoreTimer").Start();
+        GetNode<Timer>("SpeedPotionTimer").Start();
     }
 
     public void OnMobTimerTimeout()
@@ -104,6 +106,10 @@ public class Main : Node
 
     public void OnSpeedPotionTimerTimeout()
     {
-        // var potion = (SpeedPotion)SpeedPotionScene.Instance();
+        var potion = (SpeedPotion)SpeedPotionScene.Instance();
+
+        potion.Position = new Vector2(GD.Randi() % 1080, GD.Randi() % 700);
+
+        AddChild(potion);
     }
 }

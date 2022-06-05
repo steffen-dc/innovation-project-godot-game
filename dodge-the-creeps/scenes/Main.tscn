@@ -36,7 +36,6 @@ one_shot = true
 
 [node name="SpeedPotionTimer" type="Timer" parent="."]
 wait_time = 10.0
-autostart = true
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 540, 450 )
