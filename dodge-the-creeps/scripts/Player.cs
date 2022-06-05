@@ -6,11 +6,14 @@ public class Player : Area2D
     // This defines a custom signal called "hit" that we will have our player emit (send out) when it collides with an enemy
     [Signal]
     public delegate void Hit();
+    [Signal]
+    public delegate void UpdateEnergyBar(double energy);
 
     [Export]
     public int Speed = 400;
     public Vector2 ScreenSize;
 
+    private double _energy = 100;
     private bool _spinning;
 
     // Called when the node enters the scene tree for the first time.
@@ -25,10 +28,9 @@ public class Player : Area2D
     {
         var velocity = Vector2.Zero; // The player's movement vector. (by default, the player should not be moving)
 
-        if (Input.IsActionPressed("spin_attack"))
+        if (Input.IsActionPressed("spin_attack") && _energy > 0)
         {
-            Rotate(0.1f);
-            _spinning = true;
+            DoSpinAttack();
         }
         else
         {
@@ -100,8 +102,9 @@ public class Player : Area2D
     public void OnPlayerBodyEntered(PhysicsBody2D body)
     {
         if(_spinning) return;
-        
+
         Hide(); // Player disappears after being hit.
+        _energy = 100;
         EmitSignal(nameof(Hit));
         // Must be deferred as we can't change physics properties on a physics callback.
         GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
@@ -112,5 +115,19 @@ public class Player : Area2D
         Position = pos;
         Show();
         GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+    }
+
+    public void DoSpinAttack(){
+        _spinning = true;
+        _energy -= 0.25;
+        // if (_energy <= 0)
+        Rotate(0.1f);
+        EmitSignal(nameof(UpdateEnergyBar), _energy);
+    }
+
+    public void OnEnergyTimerTimeout(){
+        if (_energy >= 100) return;
+        _energy++;
+        EmitSignal(nameof(UpdateEnergyBar), _energy);
     }
 }

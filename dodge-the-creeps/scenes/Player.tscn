@@ -37,4 +37,9 @@ animation = "up"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
+[node name="EnergyTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="OnPlayerBodyEntered"]
+[connection signal="timeout" from="EnergyTimer" to="." method="OnEnergyTimerTimeout"]

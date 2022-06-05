@@ -58,4 +58,8 @@ public class HUD : CanvasLayer
     {
         GetNode<Label>("Message").Hide();
     }
+
+    public void OnUpdateEnergyBar(double energy){
+        GetNode<ProgressBar>("EnergyBar").Value = energy;
+    }
 }
