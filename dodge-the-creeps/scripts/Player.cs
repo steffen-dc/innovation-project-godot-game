@@ -113,6 +113,14 @@ public class Player : Area2D
         GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
     }
 
+    public void OnPlayerAreaEntered(Area2D area)
+    {
+        if (area is SpeedPotion)
+        {
+            area.QueueFree();
+        }
+    }
+
     public void Start(Vector2 pos)
     {
         Position = pos;

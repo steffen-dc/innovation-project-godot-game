@@ -41,5 +41,6 @@ shape = SubResource( 2 )
 wait_time = 0.1
 autostart = true
 
+[connection signal="area_entered" from="." to="." method="OnPlayerAreaEntered"]
 [connection signal="body_entered" from="." to="." method="OnPlayerBodyEntered"]
 [connection signal="timeout" from="EnergyTimer" to="." method="OnEnergyTimerTimeout"]
