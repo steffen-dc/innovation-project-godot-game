@@ -5,6 +5,8 @@ public class Main : Node
 {
     [Export]
     public PackedScene MobScene; // this will show up under script variables in the inspector of the Main scene (link mob scene with this)
+    [Export]
+    public PackedScene SpeedPotionScene;
 
     public int Score;
 
@@ -89,7 +91,7 @@ public class Main : Node
 
         // increase mob spawn rate the higher the score is
         float waitTime = 1.0f - (Score * 0.0016f);
-        GetNode<Timer>("MobTimer").SetWaitTime(waitTime);
+        GetNode<Timer>("MobTimer").WaitTime = waitTime;
 
         //update info labels
         GetNode<HUD>("HUD").UpdateCreepMinSpeedLabel(minVelocity);
@@ -98,5 +100,10 @@ public class Main : Node
 
         // Spawn the mob by adding it to the Main scene.
         AddChild(mob);
+    }
+
+    public void OnSpeedPotionTimerTimeout()
+    {
+        // var potion = (SpeedPotion)SpeedPotionScene.Instance();
     }
 }
