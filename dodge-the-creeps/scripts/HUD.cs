@@ -49,6 +49,30 @@ public class HUD : CanvasLayer
         GetNode<Label>("ScoreLabel").Text = score.ToString();
     }
 
+    public void UpdatePlayerSpeedLabel(float speed)
+    {
+        string text = "PLAYER SPEED: " + speed.ToString();
+        GetNode<Label>("PlayerSpeedLabel").Text = speed.ToString();
+    }
+
+    public void UpdateCreepMinSpeedLabel(float speed)
+    {
+        string text = "CREEP MIN SPEED: " + speed.ToString();
+        GetNode<Label>("CreepMinSpeedLabel").Text = text;
+    }
+
+    public void UpdateCreepMaxSpeedLabel(float speed)
+    {
+        string text = "CREEP MAX SPEED: " + speed.ToString();
+        GetNode<Label>("CreepMaxSpeedLabel").Text = text;
+    }
+
+    public void UpdateCreepSpawnRateLabel(float spawnRate)
+    {
+        string text = "CREEP SPAWN RATE: " + spawnRate.ToString() + "s";
+        GetNode<Label>("CreepSpawnRateLabel").Text = text;
+    }
+
     public void OnStartButtonPressed()
     {
         GetNode<Button>("StartButton").Hide();

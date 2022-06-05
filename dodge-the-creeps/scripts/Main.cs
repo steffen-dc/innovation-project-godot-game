@@ -82,14 +82,19 @@ public class Main : Node
         mob.Rotation = direction;
 
         // increase velocity with score
-        var minVelocity = 150.0 + (Score*3);
-        var maxVelocity = 250.0 + (Score*3);
+        float minVelocity = 150.0f + (Score*3);
+        float maxVelocity = 250.0f + (Score*3);
         var velocity = new Vector2((float)GD.RandRange(minVelocity, maxVelocity), 0);
         mob.LinearVelocity = velocity.Rotated(direction);
 
         // increase mob spawn rate the higher the score is
-        var waitTime = 1f - (Score/100);
+        float waitTime = 1.0f - (Score * 0.0016f);
         GetNode<Timer>("MobTimer").SetWaitTime(waitTime);
+
+        //update info labels
+        GetNode<HUD>("HUD").UpdateCreepMinSpeedLabel(minVelocity);
+        GetNode<HUD>("HUD").UpdateCreepMaxSpeedLabel(maxVelocity);
+        GetNode<HUD>("HUD").UpdateCreepSpawnRateLabel(waitTime);
 
         // Spawn the mob by adding it to the Main scene.
         AddChild(mob);
