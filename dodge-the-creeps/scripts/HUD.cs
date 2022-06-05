@@ -49,10 +49,10 @@ public class HUD : CanvasLayer
         GetNode<Label>("ScoreLabel").Text = score.ToString();
     }
 
-    public void UpdatePlayerSpeedLabel(float speed)
+    public void UpdatePlayerSpeedLabel(int speed)
     {
         string text = "PLAYER SPEED: " + speed.ToString();
-        GetNode<Label>("PlayerSpeedLabel").Text = speed.ToString();
+        GetNode<Label>("PlayerSpeedLabel").Text = text;
     }
 
     public void UpdateCreepMinSpeedLabel(float speed)

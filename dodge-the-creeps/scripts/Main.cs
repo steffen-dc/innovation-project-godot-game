@@ -108,7 +108,7 @@ public class Main : Node
     {
         var potion = (SpeedPotion)SpeedPotionScene.Instance();
 
-        potion.Position = new Vector2(GD.Randi() % 1080, GD.Randi() % 700);
+        potion.Position = new Vector2(GD.Randi() % 1080, GD.Randi() % 680);
 
         AddChild(potion);
     }

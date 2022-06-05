@@ -118,6 +118,8 @@ public class Player : Area2D
         if (area is SpeedPotion)
         {
             area.QueueFree();
+            Speed += 25;
+            GetOwner().GetNode<HUD>("HUD").UpdatePlayerSpeedLabel(Speed);
         }
     }
 
@@ -129,6 +131,8 @@ public class Player : Area2D
         
         _energy = 100;
         EmitSignal(nameof(UpdateEnergyBar), _energy);
+        Speed = 400;
+        GetOwner().GetNode<HUD>("HUD").UpdatePlayerSpeedLabel(Speed);
     }
 
     public void DoSpinAttack(){
