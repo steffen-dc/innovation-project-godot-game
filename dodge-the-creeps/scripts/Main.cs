@@ -81,9 +81,15 @@ public class Main : Node
         direction += (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
         mob.Rotation = direction;
 
-        // Choose the velocity.
-        var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
+        // increase velocity with score
+        var minVelocity = 150.0 + (Score*3);
+        var maxVelocity = 250.0 + (Score*3);
+        var velocity = new Vector2((float)GD.RandRange(minVelocity, maxVelocity), 0);
         mob.LinearVelocity = velocity.Rotated(direction);
+
+        // increase mob spawn rate the higher the score is
+        var waitTime = 1f - (Score/100);
+        GetNode<Timer>("MobTimer").SetWaitTime(waitTime);
 
         // Spawn the mob by adding it to the Main scene.
         AddChild(mob);
