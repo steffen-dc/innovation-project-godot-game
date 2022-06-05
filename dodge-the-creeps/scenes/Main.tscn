@@ -9,7 +9,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -1, 1, 0, 0, 0, 0, 478, 1, 0, 0, 0, 0, 478, 719, 0, 0, 0, 0, -1, 719, 0, 0, 0, 0, -1, 1 )
+"points": PoolVector2Array( 0, 0, 0, 0, -1, 1, 0, 0, 0, 0, 1080, 0, 0, 0, 0, 0, 1080, 720, 0, 0, 0, 0, 478, 719, 0, 0, 0, 0, -1, 719, 0, 0, 0, 0, -1, 1 )
 }
 
 [node name="Main" type="Node"]
@@ -33,14 +33,14 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Position2D" parent="."]
-position = Vector2( 240, 450 )
+position = Vector2( 540, 450 )
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource( 1 )
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2( -1, 1 )
-rotation = -3.03543e-08
+rotation = -0.000925077
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
