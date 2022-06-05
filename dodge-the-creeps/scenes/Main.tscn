@@ -22,7 +22,7 @@ SpeedPotionScene = ExtResource( 7 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.105882, 0.129412, 0.45098, 1 )
+color = Color( 0.027451, 0.113725, 0.164706, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
@@ -52,13 +52,15 @@ rotation = -0.000925077
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -40.0
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -20.0
 
 [node name="PotionPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = 24.0
+volume_db = -10.0
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="UpdateEnergyBar" from="Player" to="HUD" method="OnUpdateEnergyBar"]
