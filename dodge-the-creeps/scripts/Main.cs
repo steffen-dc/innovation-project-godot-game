@@ -86,13 +86,13 @@ public class Main : Node
         mob.Rotation = direction;
 
         // increase velocity with score
-        float minVelocity = 150.0f + (Score*3);
-        float maxVelocity = 250.0f + (Score*3);
+        float minVelocity = 150.0f + (Score*2);
+        float maxVelocity = 250.0f + (Score*2);
         var velocity = new Vector2((float)GD.RandRange(minVelocity, maxVelocity), 0);
         mob.LinearVelocity = velocity.Rotated(direction);
 
         // increase mob spawn rate the higher the score is
-        float waitTime = 1.0f - (Score * 0.0016f);
+        float waitTime = 1.0f - (Score * 0.0033f);
         GetNode<Timer>("MobTimer").WaitTime = waitTime;
 
         //update info labels

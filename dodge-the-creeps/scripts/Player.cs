@@ -117,6 +117,7 @@ public class Player : Area2D
     {
         if (area is SpeedPotion)
         {
+            GetOwner().GetNode<AudioStreamPlayer>("PotionPickup").Play();
             area.QueueFree();
             Speed += 25;
             GetOwner().GetNode<HUD>("HUD").UpdatePlayerSpeedLabel(Speed);

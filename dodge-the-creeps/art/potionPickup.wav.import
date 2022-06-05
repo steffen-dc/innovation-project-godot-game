@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/potionPickup.wav-4774255f0abb04a273d65b4df7c20878.sample"
+
+[deps]
+
+source_file="res://art/potionPickup.wav"
+dest_files=[ "res://.import/potionPickup.wav-4774255f0abb04a273d65b4df7c20878.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
