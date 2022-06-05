@@ -14,6 +14,7 @@ public class Player : Area2D
     public Vector2 ScreenSize;
 
     private double _energy = 100;
+    private int _exhaustDuration = 0;
     private bool _spinning;
 
     // Called when the node enters the scene tree for the first time.
@@ -27,6 +28,8 @@ public class Player : Area2D
     public override void _Process(float delta)
     {
         var velocity = Vector2.Zero; // The player's movement vector. (by default, the player should not be moving)
+
+        if (_exhaustDuration > 0) _exhaustDuration--;
 
         if (Input.IsActionPressed("spin_attack") && _energy > 0)
         {
@@ -120,13 +123,13 @@ public class Player : Area2D
     public void DoSpinAttack(){
         _spinning = true;
         _energy -= 0.25;
-        // if (_energy <= 0)
+        if (_energy <= 0) _exhaustDuration = 250;
         Rotate(0.1f);
         EmitSignal(nameof(UpdateEnergyBar), _energy);
     }
 
     public void OnEnergyTimerTimeout(){
-        if (_energy >= 100) return;
+        if (_energy >= 100 || _exhaustDuration > 0 ) return;
         _energy++;
         EmitSignal(nameof(UpdateEnergyBar), _energy);
     }
