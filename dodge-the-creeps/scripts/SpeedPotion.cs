@@ -18,4 +18,9 @@ public class SpeedPotion : Area2D
 //  {
 //      
 //  }
+
+    public void OnRemovePotionTimerTimeout()
+    {
+        Hide();
+    }
 }
